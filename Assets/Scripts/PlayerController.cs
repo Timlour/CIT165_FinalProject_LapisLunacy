@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Debug.Log("Is Grounded: " + isGrounded + " | Y Velocity: " + rb.velocity.y + " | Max Velocity: " + maxYVelocity);
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
 
         rb.AddForce(movement * speed);
@@ -47,7 +48,7 @@ public class PlayerController : MonoBehaviour
                 maxYVelocity = 0;
             }
         }
-        //If the player is not ground
+        //If the player is not grounded
         else
         {
             //If the player's y velocity is less than the current maxYVelocity, changing the maxYVelocity
@@ -63,7 +64,12 @@ public class PlayerController : MonoBehaviour
         //If the player is colliding with the ground and their y velocity is greater than -1.5, they are grounded
         if (collision.gameObject.CompareTag("Ground") && rb.velocity.y > -1.5)
             isGrounded = true;
-        else
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        //If the player stops colliding with the ground, they are falling
+        if (collision.gameObject.CompareTag("Ground"))
             isGrounded = false;
     }
 
