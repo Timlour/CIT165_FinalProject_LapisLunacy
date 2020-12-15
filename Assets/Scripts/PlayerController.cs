@@ -7,11 +7,15 @@ public class PlayerController : MonoBehaviour
 {
     public float speed = 0;
     public Transform currentSpawnPoint;
+    public float fallDamageVelocity = -7.0f;
 
     private Rigidbody rb;
 
+    private bool isGrounded;
+
     private float movementX;
     private float movementY;
+    private float maxYVelocity;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +36,35 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
 
         rb.AddForce(movement * speed);
+
+        //If the player is grounded
+        if (isGrounded)
+        {
+            //If the maximum velocity ever hits or goes past the maximum fall damage velocity, take damage
+            if (maxYVelocity <= fallDamageVelocity)
+            {
+                TakeFallDamage();
+                maxYVelocity = 0;
+            }
+        }
+        //If the player is not ground
+        else
+        {
+            //If the player's y velocity is less than the current maxYVelocity, changing the maxYVelocity
+            if(rb.velocity.y < maxYVelocity)
+            {
+                maxYVelocity = rb.velocity.y;
+            }
+        }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        //If the player is colliding with the ground and their y velocity is greater than -1.5, they are grounded
+        if (collision.gameObject.CompareTag("Ground") && rb.velocity.y > -1.5)
+            isGrounded = true;
+        else
+            isGrounded = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -49,4 +82,14 @@ public class PlayerController : MonoBehaviour
         }
 
     }//end of OnTriggerEnter
+
+    private void TakeFallDamage()
+    {
+        Debug.Log("Respawning...");
+        this.transform.position = new Vector3(currentSpawnPoint.position.x, currentSpawnPoint.position.y, currentSpawnPoint.position.z);
+        //Temporarily make kinematic to stop all forces so the player does not roll when respawning
+        rb.isKinematic = true;
+        rb.AddForce(Vector3.zero);
+        rb.isKinematic = false;
+    }//end of TakeFallDamage
 }
