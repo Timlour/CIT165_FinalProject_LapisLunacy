@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 0;
+    public Transform currentSpawnPoint;
 
     private Rigidbody rb;
 
@@ -32,4 +33,20 @@ public class PlayerController : MonoBehaviour
 
         rb.AddForce(movement * speed);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        //If player collides with this object, respawn them to their spawn point
+        if (other.gameObject.CompareTag("Respawn") || other.gameObject.CompareTag("Hazard"))
+        {
+            Debug.Log("Respawning...");
+            this.transform.position = new Vector3(currentSpawnPoint.position.x, currentSpawnPoint.position.y, currentSpawnPoint.position.z);
+            //Temporarily make kinematic to stop all forces so the player does not roll when respawning
+            rb.isKinematic = true;
+            rb.AddForce(Vector3.zero);
+            rb.isKinematic = false;
+        }
+
+    }//end of OnTriggerEnter
 }
