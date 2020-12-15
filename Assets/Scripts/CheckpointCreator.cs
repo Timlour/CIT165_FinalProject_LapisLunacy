@@ -22,6 +22,8 @@ public class CheckpointCreator : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             controller.currentSpawnPoint = currentSpawnPoint;
+            //Do not allow player to collide with object again
+            gameObject.GetComponent<BoxCollider>().enabled = false;
             Debug.Log("Checkpoint Set!");
         }
 

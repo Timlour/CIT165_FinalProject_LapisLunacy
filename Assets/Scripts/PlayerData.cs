@@ -13,12 +13,14 @@ public class PlayerData
     private float timer;
     private int minutes, seconds;
     private int sceneIndex;
+    private int timeLimit;
 
-    public PlayerData()
+    public PlayerData(int timeLimit)
     {
-        this.timer = 0;
-        this.minutes = 0;
-        this.seconds = 0;
+        this.timeLimit = timeLimit;
+        this.minutes = timeLimit / 60;
+        this.seconds = timeLimit % 60;
+        this.timer = timeLimit % 60;
     }//end of PlayerData
 
     //Getters
@@ -42,6 +44,11 @@ public class PlayerData
         return this.sceneIndex;
     }
 
+    public int getTimeLimit()
+    {
+        return this.timeLimit;
+    }
+
     //Setters
     public void setTimer(float timer)
     {
@@ -61,5 +68,10 @@ public class PlayerData
     public void setSceneIndex(int sceneIndex)
     {
         this.sceneIndex = sceneIndex;
+    }
+
+    public void setTimeLimit(int timeLimit)
+    {
+        this.timeLimit = timeLimit;
     }
 }
