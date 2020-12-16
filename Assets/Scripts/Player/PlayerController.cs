@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log("Is Grounded: " + isGrounded + " | Y Velocity: " + rb.velocity.y + " | Max Velocity: " + maxYVelocity);
+        //Debug.Log("Is Grounded: " + isGrounded + " | Y Velocity: " + rb.velocity.y + " | Max Velocity: " + maxYVelocity);
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
 
         rb.AddForce(movement * speed);
