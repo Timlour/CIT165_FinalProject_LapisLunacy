@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public LevelManager levelManager;
     public float speed = 0;
     public Transform currentSpawnPoint;
     public float fallDamageVelocity = -7.0f;
@@ -85,6 +86,17 @@ public class PlayerController : MonoBehaviour
             rb.isKinematic = true;
             rb.AddForce(Vector3.zero);
             rb.isKinematic = false;
+        }
+
+        //If player collides with the win area, they have won. Show the win screen and stop them from moving
+        if (other.gameObject.CompareTag("WinArea"))
+        {
+            Debug.Log("Game Won!");
+            levelManager.GameWinScreen();
+
+            //Temporarily make kinematic to stop all forces so the player does not roll when respawning
+            rb.isKinematic = true;
+            rb.AddForce(Vector3.zero);
         }
 
     }//end of OnTriggerEnter

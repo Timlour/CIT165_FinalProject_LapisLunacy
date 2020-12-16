@@ -46,7 +46,7 @@ public class ChaserController : MonoBehaviour
 
     void Update()
     {
-
+        //Debug.Log("Patrol Point: " + index);
     }
 
     void Patrol()
