@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //If player collides with the win area, they have won. Show the win screen and stop them from moving
-        if (other.gameObject.CompareTag("WinArea"))
+        if (other.gameObject.CompareTag("WinArea") && isGrounded)
         {
             Debug.Log("Game Won!");
             levelManager.GameWinScreen();

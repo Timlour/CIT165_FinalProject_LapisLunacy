@@ -27,11 +27,12 @@ public class MainMenu : MonoBehaviour
         menuStates[0].SetActive(true);
         menuStates[1].SetActive(false);
 
-        //If both PlayerPrefs start at 0, set them to 0.5f by default
-        if (PlayerPrefs.GetFloat("MusicVol") == 0 && PlayerPrefs.GetFloat("SoundVol") == 0)
+        //If this is the player's first time opening the game, set the default volumes
+        if (PlayerPrefs.GetInt("FirstRun") == 0)
         {
             PlayerPrefs.SetFloat("MusicVol", 0.5f);
             PlayerPrefs.SetFloat("SoundVol", 0.5f);
+            PlayerPrefs.SetInt("FirstRun", 1);
         }
 
         //Set any existing PlayerPrefs
