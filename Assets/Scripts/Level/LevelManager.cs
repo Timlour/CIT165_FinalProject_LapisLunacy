@@ -74,6 +74,8 @@ public class LevelManager : MonoBehaviour
     private void GameOverScreen()
     {
         gameActive = false;
+        FindObjectOfType<AudioManager>().Stop("LevelTheme"); // Stops Level Theme and plays GameOverJingle
+        FindObjectOfType<AudioManager>().Play("GameOverJingle");
 
         //Set the canvas to the in-game screen and fade it out with a coroutine
         canvGroup = inGameUI.GetComponent<CanvasGroup>();
@@ -88,6 +90,8 @@ public class LevelManager : MonoBehaviour
     public void GameWinScreen()
     {
         gameActive = false;
+        FindObjectOfType<AudioManager>().Stop("LevelTheme"); // Stops Level Theme and plays ClearJingle
+        FindObjectOfType<AudioManager>().Play("ClearJingle");
 
         //If there are less than 10 seconds in the minute, add a 0 to the front for the width to be consistent
         if (levelData.getSeconds() < 10)
