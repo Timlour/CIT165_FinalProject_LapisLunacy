@@ -9,6 +9,7 @@ TagManager:
   - EnemyArea
   - PickUp
   - WinArea
+  - Wall
   layers:
   - Default
   - TransparentFX

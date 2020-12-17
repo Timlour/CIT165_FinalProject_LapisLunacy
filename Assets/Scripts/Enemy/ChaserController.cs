@@ -25,6 +25,10 @@ public class ChaserController : MonoBehaviour
     Rigidbody rb;
     NavMeshAgent agent;
 
+    private Vector3 velocity = Vector3.zero;
+    private bool hasDetectedPlayer = false;
+    private bool lostPlayer = true;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -62,8 +66,23 @@ public class ChaserController : MonoBehaviour
 
         if (player != null && Vector2.Distance(transform.position, player.position) < detectionRange)
         {
+            hasDetectedPlayer = true;
+            lostPlayer = false;
             agent.destination = player.position;
             agent.speed = agentSpeed;
+        }
+        else if(!lostPlayer)
+        {
+            //If the enemy just lost the player, slide them back to the circle
+            if(hasDetectedPlayer == true)
+            {
+                Debug.Log("Moving Back To Position...");
+                hasDetectedPlayer = false;
+                //Smoothly move the enemy towards their last waypoint
+                index = 0;
+                agent.destination = Vector3.SmoothDamp(transform.position, waypoints[index].position, ref velocity, 1.0f);
+                lostPlayer = true;
+            }
         }
 
     }//end of Tick

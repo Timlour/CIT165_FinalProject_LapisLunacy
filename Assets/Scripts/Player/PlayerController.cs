@@ -60,6 +60,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        //If the player collides with a wall, make a collision sound
+        if (collision.gameObject.CompareTag("Wall"))
+            FindObjectOfType<AudioManager>().Play("WallBounce", PlayerPrefs.GetFloat("SoundVol")); // Plays WallBounce sound effect
+    }
+
     private void OnCollisionStay(Collision collision)
     {
         //If the player is colliding with the ground and their y velocity is greater than -1.5, they are grounded
