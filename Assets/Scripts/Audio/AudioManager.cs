@@ -15,7 +15,6 @@ public class AudioManager : MonoBehaviour
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
 
-            s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
@@ -23,13 +22,20 @@ public class AudioManager : MonoBehaviour
 
     void Start ()
     {
-        Play("LevelTheme"); // Plays LevelTheme upon level start
+        Play("LevelTheme", PlayerPrefs.GetFloat("MusicVol")); // Plays LevelTheme upon level start
     }
 
-    public void Play (string name)
+    public void Play (string name, float audioVol)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         s.source.Play();
+        s.source.volume = audioVol;
+    }
+
+    public void ChangeVolume(string name, float audioVol)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        s.source.volume = audioVol;
     }
 
     public void Stop (string name) // Not in Brackeys video - Stops a sound

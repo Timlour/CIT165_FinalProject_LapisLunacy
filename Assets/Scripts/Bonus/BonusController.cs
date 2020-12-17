@@ -11,9 +11,10 @@ public class BonusController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        //If player collides with this object, add time to the clock
+        //If player collides with this object, add time to the clock and play its sound effect
         if (other.gameObject.CompareTag("Player"))
         {
+            FindObjectOfType<AudioManager>().Play("BonusPickUp", PlayerPrefs.GetFloat("SoundVol"));
             changeTimer.AddToTime(secondsAdded);
             gameObject.SetActive(false);
         }

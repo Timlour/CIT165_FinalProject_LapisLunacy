@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
         //If player collides with this object, respawn them to their spawn point
         if (other.gameObject.CompareTag("Respawn") || other.gameObject.CompareTag("Hazard"))
         {
-            FindObjectOfType<AudioManager>().Play("PlayerDeath"); // Plays PlayerDeath sound effect upon colliding with laser
+            FindObjectOfType<AudioManager>().Play("PlayerDeath", PlayerPrefs.GetFloat("SoundVol")); // Plays PlayerDeath sound effect upon colliding with hazard
             // ^^^ Insert this code where the player dies from fall damage and from falling off the stage
             Debug.Log("Respawning...");
             this.transform.position = new Vector3(currentSpawnPoint.position.x, currentSpawnPoint.position.y, currentSpawnPoint.position.z);
@@ -106,6 +106,7 @@ public class PlayerController : MonoBehaviour
     private void TakeFallDamage()
     {
         Debug.Log("Respawning...");
+        FindObjectOfType<AudioManager>().Play("PlayerDeath", PlayerPrefs.GetFloat("SoundVol")); // Plays PlayerDeath sound effect upon colliding with hazard
         this.transform.position = new Vector3(currentSpawnPoint.position.x, currentSpawnPoint.position.y, currentSpawnPoint.position.z);
         //Temporarily make kinematic to stop all forces so the player does not roll when respawning
         rb.isKinematic = true;

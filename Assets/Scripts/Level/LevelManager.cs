@@ -20,6 +20,7 @@ public class LevelManager : MonoBehaviour
     CanvasGroup canvGroup;
     UIFader uiFader;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -75,7 +76,7 @@ public class LevelManager : MonoBehaviour
     {
         gameActive = false;
         FindObjectOfType<AudioManager>().Stop("LevelTheme"); // Stops Level Theme and plays GameOverJingle
-        FindObjectOfType<AudioManager>().Play("GameOverJingle");
+        FindObjectOfType<AudioManager>().Play("GameOverJingle", PlayerPrefs.GetFloat("MusicVol"));
 
         //Set the canvas to the in-game screen and fade it out with a coroutine
         canvGroup = inGameUI.GetComponent<CanvasGroup>();
@@ -91,7 +92,7 @@ public class LevelManager : MonoBehaviour
     {
         gameActive = false;
         FindObjectOfType<AudioManager>().Stop("LevelTheme"); // Stops Level Theme and plays ClearJingle
-        FindObjectOfType<AudioManager>().Play("ClearJingle");
+        FindObjectOfType<AudioManager>().Play("ClearJingle", PlayerPrefs.GetFloat("MusicVol"));
 
         //If there are less than 10 seconds in the minute, add a 0 to the front for the width to be consistent
         if (levelData.getSeconds() < 10)

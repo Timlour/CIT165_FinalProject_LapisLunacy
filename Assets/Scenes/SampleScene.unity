@@ -5509,6 +5509,11 @@ PrefabInstance:
       propertyPath: changeTimer
       value: 
       objectReference: {fileID: 1893239295}
+    - target: {fileID: 5162867435042437045, guid: f0e6e4f8b0e97124fa762bdd2b2c002c,
+        type: 3}
+      propertyPath: pickUpSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 4f584f38d81584245b9d4ee57e973274, type: 3}
     - target: {fileID: 5162867435042437071, guid: f0e6e4f8b0e97124fa762bdd2b2c002c,
         type: 3}
       propertyPath: m_Name
@@ -10892,6 +10897,12 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: GameOverJingle
     clip: {fileID: 8300000, guid: 3cc053c567a9cd04db805fd4fa5ef7e8, type: 3}
+    volume: 0.9
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BonusPickUp
+    clip: {fileID: 8300000, guid: 4f584f38d81584245b9d4ee57e973274, type: 3}
     volume: 0.9
     pitch: 1
     loop: 0
@@ -20337,7 +20348,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh15892
+  m_Name: pb_Mesh-3364
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -24900,7 +24911,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-57366
+  m_Name: pb_Mesh-3322
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -28522,6 +28533,11 @@ PrefabInstance:
       propertyPath: changeTimer
       value: 
       objectReference: {fileID: 1893239295}
+    - target: {fileID: 5162867435042437045, guid: f0e6e4f8b0e97124fa762bdd2b2c002c,
+        type: 3}
+      propertyPath: pickUpSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 4f584f38d81584245b9d4ee57e973274, type: 3}
     - target: {fileID: 5162867435042437071, guid: f0e6e4f8b0e97124fa762bdd2b2c002c,
         type: 3}
       propertyPath: m_Name
@@ -28552,6 +28568,16 @@ PrefabInstance:
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 1893239295}
+    - target: {fileID: 6043059842665307835, guid: 555ad213b94c6764cb7615f1d69e8050,
+        type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 75512360ac691c6448b9318b3e03466b, type: 3}
+    - target: {fileID: 6043059842665307835, guid: 555ad213b94c6764cb7615f1d69e8050,
+        type: 3}
+      propertyPath: pickUpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 4f584f38d81584245b9d4ee57e973274, type: 3}
     - target: {fileID: 6077602842494056786, guid: 555ad213b94c6764cb7615f1d69e8050,
         type: 3}
       propertyPath: m_LocalPosition.x
